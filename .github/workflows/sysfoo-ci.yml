@@ -1,5 +1,8 @@
 name: sysfoo-demo
-on: push
+on:
+  push:
+    branches:
+      - 'master'
 jobs:
   sysfoo-job:
     runs-on: ubuntu-latest
@@ -16,3 +19,9 @@ jobs:
        run: mvn package
      - name: view files
        run: ls -ltr target
+     - name: Upload a Build Artifact
+       uses: actions/upload-artifact@v6.0.0
+       with:
+         name: sysfoo
+         path: target/**.war
+     
